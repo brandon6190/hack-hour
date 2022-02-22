@@ -1,3 +1,5 @@
+const CircularJSON = require('circular-json');
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -13,11 +15,31 @@ class DoublyLinkedList {
   }
 
   setHead(node) {
-    // Write your code here.
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      if (currentNode.value === node.value) {
+        // change the next node to point at prev node
+        currentNode.next.prev = currentNode.prev;
+        // change the prev node to point at next node
+        currentNode.prev.next = currentNode.next;
+
+        // seperate current node from list
+        currentNode.next = null;
+        currentNode.prev = null;
+
+        // switch head node for currentNode and attach currentNode to list
+        this.head.prev = currentNode;
+        let currentList = this.head;
+        this.head = currentNode;
+        this.head.next = currentList;
+      }
+      currentNode = currentNode.next;
+    }
   }
 
   setTail(node) {
-    // Write your code here.
+    this.tail = node;
   }
 
   insertBefore(node, nodeToInsert) {
