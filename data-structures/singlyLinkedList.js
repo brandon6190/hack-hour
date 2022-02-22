@@ -1,17 +1,22 @@
-// Refactor by creating a Node class to hold the value and next pointer and to seperate the Node object from the list object
-class LinkedList {
+class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
   }
+}
+
+class LinkedList {
+  constructor(head) {
+    this.head = head;
+  }
 
 	addMany(values) {
-    let current = this;
+    let current = this.head;
     while (current.next !== null) {
       current = current.next;
     }
     for (const value of values) {
-      current.next = new LinkedList(value);
+      current.next = new Node(value);
       current = current.next;
     }
     return this;
@@ -19,7 +24,7 @@ class LinkedList {
 
   getNodesInArray() {
     const nodes = [];
-    let current = this;
+    let current = this.head;
     while (current !== null) {
       nodes.push(current.value);
       current = current.next;
@@ -28,7 +33,7 @@ class LinkedList {
   }
 
 	removeDuplicates() {
-		let currentNode = this;
+		let currentNode = this.head;
 
 		while (currentNode !== null) {
 			let nextDistinctNode = currentNode.next;
@@ -45,8 +50,10 @@ class LinkedList {
 
 // Test
 
-const myLinkedList = new LinkedList(1).addMany([1, 3, 4, 4, 4, 5, 6, 6]);
+const node = new Node(2);
+const myLinkedList = new LinkedList(node).addMany([1, 3, 4, 4, 4, 5, 6, 6]);
 
+console.log({myLinkedList});
 console.log('nodes before: ', myLinkedList.getNodesInArray());
 console.log('removed duplicates: ', myLinkedList.removeDuplicates());
 console.log('nodes after: ', myLinkedList.getNodesInArray());
