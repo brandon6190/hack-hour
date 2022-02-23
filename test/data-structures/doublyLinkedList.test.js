@@ -44,7 +44,9 @@ const three2 = new Node(3);
 const three3 = new Node(3);
 const four = new Node(4);
 const five = new Node(5);
+const five2 = new Node(5);
 const six = new Node(6);
+const seven = new Node(7);
 bindNodes(one, two);
 bindNodes(two, three);
 bindNodes(three, four);
@@ -89,26 +91,34 @@ it('insertAtPosition()', function() {
   chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([3, 4, 1, 2, 5, 3, 6, 3]);
   chai.expect(getNodeValuesTailToHead(linkedList)).to.deep.equal([3, 6, 3, 5, 2, 1, 4, 3]);
 
+  linkedList.insertAtPosition(2, five2);
+  chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([3, 5, 4, 1, 2, 5, 3, 6, 3]);
+  chai.expect(getNodeValuesTailToHead(linkedList)).to.deep.equal([3, 6, 3, 5, 2, 1, 4, 5, 3]);
+
+  linkedList.insertAtPosition(20, seven);
+  chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([3, 5, 4, 1, 2, 5, 3, 6, 3, 7]);
+  chai.expect(getNodeValuesTailToHead(linkedList)).to.deep.equal([7, 3, 6, 3, 5, 2, 1, 4, 5, 3]);
 });
 
 it('removeNodesWithValue()', function() {
 
   linkedList.removeNodesWithValue(3);
-  chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([4, 1, 2, 5, 6]);
-  chai.expect(getNodeValuesTailToHead(linkedList)).to.deep.equal([6, 5, 2, 1, 4]);
+  chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([5, 4, 1, 2, 5, 6, 7]);
+  chai.expect(getNodeValuesTailToHead(linkedList)).to.deep.equal([7, 6, 5, 2, 1, 4, 5]);
 
 });
 
 it('remove()', function() {
 
   linkedList.remove(two);
-  chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([4, 1, 5, 6]);
-  chai.expect(getNodeValuesTailToHead(linkedList)).to.deep.equal([6, 5, 1, 4]);
+  chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([5, 4, 1, 5, 6, 7]);
+  chai.expect(getNodeValuesTailToHead(linkedList)).to.deep.equal([7, 6, 5, 1, 4, 5]);
 
 });
 
 it('containsNodeWithValue()', function() {
   chai.expect(linkedList.containsNodeWithValue(5)).to.deep.equal(true);
+  chai.expect(linkedList.containsNodeWithValue(20)).to.deep.equal(false);
 });
 
 
