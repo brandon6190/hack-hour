@@ -14,40 +14,51 @@ class DoublyLinkedList {
     this.tail = null;
   }
 
+  // O(1) time | O(1) space
   setHead(node) {
-    let currentNode = this.head;
-
-    while (currentNode !== null) {
-      if (currentNode.value === node.value) {
-        // change the next node to point at prev node
-        currentNode.next.prev = currentNode.prev;
-        // change the prev node to point at next node
-        currentNode.prev.next = currentNode.next;
-
-        // seperate current node from list
-        currentNode.next = null;
-        currentNode.prev = null;
-
-        // switch head node for currentNode and attach currentNode to list
-        this.head.prev = currentNode;
-        let currentList = this.head;
-        this.head = currentNode;
-        this.head.next = currentList;
-      }
-      currentNode = currentNode.next;
+    if (this.head === null) {
+      this.head = node;
+      this.tail = node;
+      return;
     }
+    this.insertBefore(this.head, node);
   }
 
+  // O(1) time | O(1) space
   setTail(node) {
-    this.tail = node;
+    if (this.tail == null) {
+      this.setHead(node);
+      return;
+    }
+    this.insertAfter(this.tail, node);
   }
 
+  // O(1) time | O(1) space
   insertBefore(node, nodeToInsert) {
-    // Write your code here.
+    if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+    this.remove(nodeToInsert);
+    nodeToInsert.prev = node.prev;
+    nodeToInsert.next = node;
+    if (node.prev === null) {
+      this.head = nodeToInsert;
+    } else {
+      node.prev.next = nodeToInsert;
+    }
+    node.prev = nodeToInsert;
   }
 
+  // O(1) time | O(1) space
   insertAfter(node, nodeToInsert) {
-    // Write your code here.
+    if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+    this.remove(nodeToInsert);
+    nodeToInsert.prev = node;
+    nodeToInsert.next = node.next;
+    if (node.next === null) {
+      this.tail = nodeToInsert;
+    } else {
+      node.next.prev = nodeToInsert;
+    }
+    node.next = nodeToInsert;
   }
 
   insertAtPosition(position, nodeToInsert) {
@@ -59,11 +70,20 @@ class DoublyLinkedList {
   }
 
   remove(node) {
-    // Write your code here.
+    if (node === this.head) this.head = this.head.next;
+    if (node === this.tail) this.tail = this.tail.prev;
+    this.removeNodeBindings(node);
   }
 
   containsNodeWithValue(value) {
     // Write your code here.
+  }
+
+  removeNodeBindings(node) {
+    if (node.prev !== null) node.prev.next = node.next;
+    if (node.next !== null) node.next.prev = node.prev;
+    node.prev = null;
+    node.next = null;
   }
 }
 
