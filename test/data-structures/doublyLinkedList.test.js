@@ -54,6 +54,8 @@ bindNodes(four, five);
 linkedList.head = one;
 linkedList.tail = five;
 
+console.log('Test Cases For Doubly Linked List:');
+
 it('setHead()', function () {
   linkedList.setHead(four);
   chai.expect(getNodeValuesHeadToTail(linkedList)).to.deep.equal([4, 1, 2, 3, 5]);
