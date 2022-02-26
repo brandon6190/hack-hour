@@ -48,17 +48,23 @@ Constraints:
  * @return {void} Do not return anything, modify nums1 in-place instead.
 */
 
+/* Try solving without using splice and sort methods built in methods */
+
 function merge(nums1, m, nums2, n) {
-  return nums1;
+  nums1.splice(m, n, ...nums2);
+  nums1.sort((a,b) => a-b);
 }
 
 
 // Test Cases:
 
-const nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3;
+let nums1 = [1,2,3,0,0,0];
+let m = 3;
+let nums2 = [2,5,6];
+let n = 3;
 
-console.log(merge(nums1, m, nums2, n));
+merge(nums1, m, nums2, n);
 
-
+console.log({nums1});
 
 
