@@ -22,12 +22,42 @@ Constraints:
 */
 
 function shiftedArrSearch(shiftArr, num) {
+  const pivot = findPivotPoint(shiftArr);
+
+  if (pivot === 0 || num < shiftArr[0]) {
+    return binarySearch(shiftArr, pivot, shiftArr.length-1, num);
+  }
+
+  return binarySearch(shiftArr, 0, pivot-1, num);
 }
 
 function findPivotPoint(arr) {
+  let begin = 0;
+  let end = arr.length-1;
+
+  while (begin <= end) {
+    let mid = begin + Math.floor((end - begin)/2);
+
+    if (arr[mid] < arr[mid-1]) return mid; // return mid as pivot point
+
+    if (arr[mid] > arr[end]) begin = mid+1;
+    else end = mid-1;
+  }
+
+  return 0;
 }
 
-function binarySearch(arr) {
+function binarySearch(arr, begin, end, target) {
+  while (begin <= end) {
+    let mid = begin + Math.floor((end-begin)/2);
+
+    if (arr[mid] === target) return mid; // return mid as index of found target
+
+    if (arr[mid] < target) begin = mid+1;
+    else end = mid-1;
+  }
+
+  return -1;
 }
 
 // Test Cases:
