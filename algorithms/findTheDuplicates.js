@@ -20,4 +20,26 @@ Constraints:
 [output] array.integer
 */
 
+// O(n^2) time | O(n) space - n is the length of the duplicates array
+function findDuplicates(arr1, arr2) {
+  const duplicates = [];
+
+  for (let i = 0; i < arr1.length; i += 1) {
+
+    for (let k = 0; k < arr2.length; k += 1) {
+      if (arr1[i] === arr2[k]) duplicates.push(arr1[i]);
+    }
+
+  }
+
+  return duplicates;
+}
+
+// Test Cases:
+
+const arr1 = [1, 2, 3, 5, 6, 7], arr2 = [3, 6, 7, 8, 20];
+
+console.log(findDuplicates(arr1, arr2));
+
+
 
