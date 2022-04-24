@@ -23,7 +23,7 @@ Basic or Fundamental Programming Concepts:
  * The const and let variables are locally scoped, which means if you create a variable inside a function, the global scope won't have access to that variable, just one example.
 */
 
-var label1 = 4; // Ewww stay away! Also uses hoisting, whatever that means, right?
+var label1 = 4; // Ewww stay away! Also uses hoisting, whatever that means, right? jk, we'll talk about hoisting later
 let labelB = 'hi'; // Much better! the let variables value can be reassigned later
 const labelThird = true; // const stands for constant which is also how this keyword treats its values. Once there, alwyas there.
 
@@ -57,10 +57,10 @@ let timeOfDeath; // undefined
 let casket = null // well obviously it's null, right? YES!
 
 // if you wanted to have all this info in an orginzed list you could add all the variables into an array
-const allTheInfo = [name, age, isHuman, timeOfDeath, casket];
+const personA = [name, age, isHuman, timeOfDeath, casket];
 
 // or an object could be even more useful, depending on your needs!
-const allTheInfoPart2 = {
+const personB = {
   name: "John Doe",
   age: 44,
   isHuman: true,
@@ -80,8 +80,8 @@ const allTheInfoPart2 = {
  * You would also use a period(.) to access a method then use the "()" parenthesis to call it
 */
 
-console.log('length of allTheInfo array: ', allTheInfo.length); // will return the length of the array
-console.log('length of allTheInfoPart2 object? ', allTheInfoPart2.length); // will return undefined because length is not a property for an object only arrays.
+console.log('length of personA array: ', personA.length); // will return the length of the array
+console.log('length of personB object? ', personB.length); // will return undefined because length is not a property for an object only arrays.
 
 // Looping:
 
@@ -99,9 +99,9 @@ console.log('length of allTheInfoPart2 object? ', allTheInfoPart2.length); // wi
 
 console.log('for loop start');
     // initializer, condition, and incrementor are all in the same line or ()
-for (let i = 0; i < allTheInfo.length; i += 1) {
+for (let i = 0; i < personA.length; i += 1) {
 
-  console.log(allTheInfo[i]);
+  console.log(personA[i]);
 
 }
 console.log('for loop end');
@@ -113,9 +113,9 @@ let idx = 0; // initial iterator value declared
 console.log('while loop start');
 
       // do somthing while condition is true
-while (idx < allTheInfo.length) {
+while (idx < personA.length) {
 
-  console.log(allTheInfo[idx]);
+  console.log(personA[idx]);
   idx += 1; // increment iterator to avoid infinite loop
 
 }
@@ -130,10 +130,10 @@ let index = 0; // initial iterator value declared
 
 do { // do somthing first
 
-  console.log(allTheInfo[index]);
+  console.log(personA[index]);
   index += 1; // increment iterator to avoid infinite loop
 
-} while (index < allTheInfo.length); // then at end check if condition is true to start/continue loop
+} while (index < personA.length); // then at end check if condition is true start/continue loop
 
 console.log('do...while end');
 
@@ -158,7 +158,7 @@ console.log('do...while end');
 // for...of
 console.log('start for...of');
 
-for (let value of allTheInfo) {
+for (let value of personA) {
   console.log(value);
 }
 
@@ -167,10 +167,10 @@ console.log('end for...of');
 // for...in
 console.log('start for...in');
 
-for (let key in allTheInfoPart2) {
+for (let key in personB) {
   console.log('key/value pairs');
   console.log(`key: ${key}`);
-  console.log(`value: ${allTheInfoPart2[key]}`);
+  console.log(`value: ${personB[key]}`);
 }
 
 console.log('end for...in');
@@ -178,10 +178,17 @@ console.log('end for...in');
 // Control Flow:
 
 /*
- *
+ * Allows you to direct in which direction the program will go depending on specified "conditions"
+ * The conditions are evaluated as either true or false
+ * These are known as conditional statements and they use if/else clause
+ * It would read like "if condition is true then do somthing, else do somthing different"
 */
 
-
+if (personB.name.length > 0) {
+  console.log(`personB has a name and it's ${personB.name}`);
+} else {
+  console.log('personB doesn\'t have a name');
+}
 
 
 
